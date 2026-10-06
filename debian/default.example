@@ -1,0 +1,16 @@
+# /etc/default/feed-index: environment for feed-index-fetch.service.
+# Copy from /usr/share/doc/feed-index/default.example and edit.
+#
+# Standard libpq variables. The password is read ONLY from PGPASSFILE (pgpass
+# format: host:port:database:user:password); PGPASSWORD is refused.
+
+PGHOST=db.example.org
+PGPORT=5432
+PGDATABASE=feeds
+PGUSER=feed_index
+PGSSLMODE=require
+PGPASSFILE=/etc/feed-index/pgpass
+
+# Log level (journal). Entry titles, links, content and full feed URLs are never
+# logged at any level; hosts, feed ids, status codes and counts are.
+#RUST_LOG=info

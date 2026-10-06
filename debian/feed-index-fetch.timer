@@ -1,0 +1,10 @@
+[Unit]
+Description=Run feed-index fetch every 5 minutes (each run fetches only the feeds that are due)
+
+[Timer]
+OnCalendar=*:0/5
+Persistent=true
+RandomizedDelaySec=30
+
+[Install]
+WantedBy=timers.target

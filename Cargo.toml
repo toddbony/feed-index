@@ -3,7 +3,7 @@ name = "feed-index"
 version = "0.1.0"
 edition = "2024"
 rust-version = "1.85"
-description = "Poll RSS/Atom feeds listed in an OPML file and index their entries into PostgreSQL"
+description = "Index RSS/Atom feeds listed in an OPML file into PostgreSQL"
 license = "MIT OR Apache-2.0"
 readme = "README.md"
 
@@ -33,3 +33,24 @@ whoami = { version = "2", default-features = false, features = ["std"] }
 flate2 = "1"
 tempfile = "3"
 wiremock = "0.6"
+
+[package.metadata.deb]
+# Placeholder: set the real one at build time with `cargo deb --maintainer "..."`.
+maintainer = "feed-index maintainers <maintainers@example.org>"
+section = "net"
+priority = "optional"
+depends = "$auto, adduser, systemd"
+extended-description = """\
+Polls RSS, Atom and JSON feeds listed in an OPML file and indexes their entries into \
+PostgreSQL, keeping every entry after the feed has rotated it out. Installs a oneshot \
+service and a timer; enables nothing."""
+maintainer-scripts = "debian/"
+assets = [
+    ["target/release/feed-index", "usr/bin/", "755"],
+    ["debian/feed-index-fetch.service", "usr/lib/systemd/system/", "644"],
+    ["debian/feed-index-fetch.timer", "usr/lib/systemd/system/", "644"],
+    ["example.toml", "usr/share/doc/feed-index/config.example.toml", "644"],
+    ["example.opml", "usr/share/doc/feed-index/feeds.example.opml", "644"],
+    ["debian/default.example", "usr/share/doc/feed-index/", "644"],
+    ["debian/README.deploy.md", "usr/share/doc/feed-index/", "644"],
+]

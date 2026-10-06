@@ -1,0 +1,17 @@
+[Unit]
+Description=Fetch due RSS/Atom feeds into PostgreSQL (feed-index fetch)
+Documentation=file:///usr/share/doc/feed-index/README.deploy.md
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/feed-index fetch
+User=feed-index
+Group=feed-index
+EnvironmentFile=-/etc/default/feed-index
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX

@@ -7,7 +7,8 @@
 opml = "/etc/feed-index/feeds.opml"
 
 # Sent in the User-Agent header so publishers can reach whoever runs this fetcher:
-# "feed-index/<version> (+<contact>)". A URL or a mailto: is customary.
+# "feed-index/<version> (+<contact>)". A URL or a mailto: is customary. Optional, but
+# please set it; without it the User-Agent is just "feed-index/<version>".
 contact = "https://example.org/feed-index"
 
 # Minutes between fetches of a feed that sets no poll_minutes attribute (5..=1440).
