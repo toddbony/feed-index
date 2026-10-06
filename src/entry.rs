@@ -13,6 +13,10 @@ use url::Url;
 
 use crate::text::{self, strip_nul};
 
+/// Ids longer than this are not used as keys (the entry is fingerprinted instead): the key is
+/// in a btree unique index, whose rows cannot exceed ~2.7 kB.
+pub const MAX_ID_BYTES: usize = 2048;
+
 /// What the parser's id generator returns for an entry without an id. feed-rs synthesises an
 /// id for such entries (a hash of link and title, or a random UUID), which would be
 /// indistinguishable from a real one; this cannot occur in XML (NUL is not a legal character),
@@ -154,7 +158,8 @@ pub fn entry_row(e: model::Entry) -> EntryRow {
     });
 
     let id = e.id.trim();
-    let (entry_key, key_source) = if e.id == NO_ID || id.is_empty() || strip_nul(id).is_empty() {
+    let id = strip_nul(id);
+    let (entry_key, key_source) = if e.id == NO_ID || id.is_empty() || id.len() > MAX_ID_BYTES {
         (
             fingerprint(
                 link.as_deref().unwrap_or(""),
@@ -163,7 +168,7 @@ pub fn entry_row(e: model::Entry) -> EntryRow {
             KeySource::Fingerprint,
         )
     } else {
-        (strip_nul(id), KeySource::Id)
+        (id, KeySource::Id)
     };
 
     let (body_text, body_source) = body_text(content.as_ref(), summary.as_ref());

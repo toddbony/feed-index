@@ -871,6 +871,48 @@ async fn case16_nul_bytes_and_renderer_panic() {
 }
 
 #[tokio::test(flavor = "multi_thread", worker_threads = 2)]
+async fn huge_links_and_ids_do_not_wedge_a_feed() {
+    let Some(db) = test_db().await else { return };
+    let site = Site::new().await;
+    // Incompressible, far over the ~2.7 kB btree row limit.
+    let long: String = (0..400)
+        .map(|i| format!("{:016x}", (i as u64).wrapping_mul(0x9e37_79b9_7f4a_7c15)))
+        .collect();
+    let doc = format!(
+        "<rss version=\"2.0\"><channel><title>Long</title>\
+         <item><title>Long link</title><link>https://long.example.org/{long}</link><guid>short</guid></item>\
+         <item><title>Long id</title><link>https://long.example.org/b</link><guid>{long}</guid></item>\
+         </channel></rss>"
+    );
+    site.set_feeds(&["/long.xml"]);
+    site.serve("/long.xml", doc, "application/rss+xml").await;
+    let r = db.fetch_due(&site).await;
+    assert_eq!(
+        (r.ok, r.new_entries, r.errors),
+        (1, 2, 0),
+        "{:?}",
+        r.summary_lines()
+    );
+    let e = entries(&db, db.feed_id(&site.url("/long.xml")).await).await;
+    assert_eq!(e[0].link.as_deref().unwrap().len(), 25 + long.len());
+    assert_eq!(
+        e[1].key_source, "fingerprint",
+        "an over-long id is not a key"
+    );
+    assert_eq!(
+        e[1].entry_key,
+        feed_index::entry::fingerprint("https://long.example.org/b", "Long id")
+    );
+    let linked: i64 = sqlx::query_scalar("SELECT count(*) FROM feeds.entries WHERE link = $1")
+        .bind(e[0].link.as_deref())
+        .fetch_one(&db.pool)
+        .await
+        .unwrap();
+    assert_eq!(linked, 1);
+    db.drop_db().await;
+}
+
+#[tokio::test(flavor = "multi_thread", worker_threads = 2)]
 async fn case17_duplicate_guid_in_one_document() {
     let Some(db) = test_db().await else { return };
     let site = Site::new().await;

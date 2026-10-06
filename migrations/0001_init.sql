@@ -82,7 +82,9 @@ COMMENT ON COLUMN feeds.entries.backfill        IS 'True for entries found on a 
 CREATE INDEX entries_first_seen_idx ON feeds.entries (first_seen_at);
 CREATE INDEX entries_published_idx  ON feeds.entries (published_at);
 CREATE INDEX entries_feed_seen_idx  ON feeds.entries (feed_id, first_seen_at DESC);
-CREATE INDEX entries_link_idx       ON feeds.entries (link) WHERE link IS NOT NULL;
+-- Hash, not btree: links come from feeds and can be arbitrarily long, and a btree index row
+-- over ~2.7 kB is an error that would fail the whole fetch. Joins by link need equality only.
+CREATE INDEX entries_link_idx       ON feeds.entries USING hash (link) WHERE link IS NOT NULL;
 
 CREATE TABLE feeds.fetch_runs (
     run_id           bigint GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
