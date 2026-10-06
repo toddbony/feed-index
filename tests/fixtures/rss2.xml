@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Example Wire</title>
+    <link>https://news.example.org/</link>
+    <description>Test feed</description>
+    <item>
+      <title>First   story</title>
+      <link>https://news.example.org/2026/first?utm_source=rss</link>
+      <guid isPermaLink="false">  news-1  </guid>
+      <dc:creator>Ada Example</dc:creator>
+      <pubDate>Mon, 05 Oct 2026 09:30:00 +0200</pubDate>
+      <description>&lt;p&gt;Short &lt;b&gt;summary&lt;/b&gt; one.&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>Full text of the <a href="https://news.example.org/ref?utm_medium=x">first</a> story.</p><p>Second paragraph.</p>]]></content:encoded>
+    </item>
+    <item>
+      <title>Second story</title>
+      <link>https://news.example.org/2026/second</link>
+      <guid>https://news.example.org/2026/second</guid>
+      <pubDate>Sun, 04 Oct 2026 08:00:00 GMT</pubDate>
+      <description>Only a summary, in plain words.</description>
+    </item>
+  </channel>
+</rss>

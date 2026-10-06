@@ -172,7 +172,12 @@ impl Client {
                     .and_then(|v| parse_retry_after(&v, Utc::now()));
             }
             attempt.outcome = Outcome::HttpError;
-            attempt.error = Some(format!("HTTP {}", status.as_u16()));
+            attempt.error = Some(if status.is_redirection() {
+                // Not followed: no usable Location, or not an http(s) one.
+                format!("HTTP {} (redirect not followed)", status.as_u16())
+            } else {
+                format!("HTTP {}", status.as_u16())
+            });
             return attempt;
         }
         // Content-Length is the compressed size when the body is compressed, so it can only

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Example Atom</title>
+  <id>urn:uuid:60a76c80-d399-11d9-b93C-0003939e0af6</id>
+  <updated>2026-10-05T18:30:02Z</updated>
+  <link href="https://writer.example.com/"/>
+  <entry>
+    <title type="text">Atom entry one</title>
+    <link rel="alternate" type="text/html" href="https://writer.example.com/one"/>
+    <link rel="edit" href="https://writer.example.com/edit/one"/>
+    <id>tag:writer.example.com,2026:one</id>
+    <published>2026-10-01T10:00:00Z</published>
+    <updated>2026-10-02T11:00:00Z</updated>
+    <author><name>Writer Person</name></author>
+    <summary type="html">&lt;p&gt;Atom summary&lt;/p&gt;</summary>
+    <content type="html">&lt;p&gt;Atom content body.&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Atom entry two</title>
+    <link href="https://writer.example.com/two"/>
+    <id>tag:writer.example.com,2026:two</id>
+    <updated>2026-10-03T12:00:00Z</updated>
+    <summary>Plain summary text.</summary>
+  </entry>
+</feed>

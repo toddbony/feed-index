@@ -1,0 +1,1 @@
+{"version":"https://jsonfeed.org/version/1.1","title":"Nul json","items":[{"id":"nul\u0000-json","url":"https://nul.example.org/j\u0000","title":"Json\u0000title","content_html":"<p>Json\u0000 body</p>","summary":"s\u0000"}]}

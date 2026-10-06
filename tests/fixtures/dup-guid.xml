@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<rss version="2.0"><channel><title>Dups</title><link>https://dup.example.org/</link><description>d</description>
+<item><title>Kept</title><link>https://dup.example.org/1</link><guid>same</guid></item>
+<item><title>Dropped</title><link>https://dup.example.org/2</link><guid>same</guid></item>
+<item><title>Other</title><link>https://dup.example.org/3</link><guid>other</guid></item>
+</channel></rss>

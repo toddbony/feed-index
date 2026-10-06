@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Channel Zebrafinch</title><link>https://hygiene.example.org/zebrafinch-home</link><description>d</description>
+<item><title>Headline Narwhal Quasar</title><link>https://hygiene.example.org/narwhal-quasar-link</link><guid>guid-narwhal-quasar</guid><description>Summary Platypus Nebula</description><content:encoded><![CDATA[<p>Content Axolotl Pulsar <a href="https://hygiene.example.org/axolotl-href">x</a></p>]]></content:encoded></item>
+<item><title>Headline Okapi Meridian</title><link>https://hygiene.example.org/okapi-meridian-link</link><description>Summary Okapi Meridian body</description></item>
+</channel></rss>

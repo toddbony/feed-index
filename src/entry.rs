@@ -94,9 +94,15 @@ pub fn parse_document(bytes: &[u8]) -> Result<ParsedFeed, String> {
         Err(_) => return Err("parser panicked".into()),
     };
     let entries_in_doc = feed.entries.len();
+    let rss2 = feed.feed_type == model::FeedType::RSS2;
     let mut seen = HashSet::new();
     let mut entries = Vec::with_capacity(entries_in_doc);
-    for e in feed.entries {
+    for mut e in feed.entries {
+        // feed-rs copies an RSS 2.0 item's pubDate into `updated` when it has no update
+        // time; `updated_at` is only what the feed declares.
+        if rss2 && e.updated.is_some() && e.updated == e.published {
+            e.updated = None;
+        }
         let row = entry_row(e);
         if seen.insert(row.entry_key.clone()) {
             entries.push(row);

@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Tables</title><link>https://table.example.org/</link><description>d</description>
+<item><title>Has a hostile table</title><link>https://table.example.org/1</link><guid>table-1</guid>
+<content:encoded><![CDATA[<table><tr><td rowspan="0">a</td><td rowspan="2">b</td></tr><tr><td>c</td></tr><tr><td colspan="0">wide wide wide wide</td></tr></table>]]></content:encoded>
+</item>
+</channel></rss>

@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Dates</title><id>dates</id><updated>2026-10-01T00:00:00Z</updated>
+<entry><id>none</id><title>No dates</title></entry>
+<entry><id>old</id><title>Old</title><published>1900-01-01T00:00:00Z</published><updated>1900-06-01T00:00:00Z</updated></entry>
+<entry><id>future</id><title>Future</title><published>2200-01-01T00:00:00Z</published><updated>2200-01-01T00:00:00Z</updated></entry>
+<entry><id>garbage</id><title>Garbage</title><published>sometime soon</published></entry>
+<entry><id>good</id><title>Good</title><published>2026-10-01T12:00:00+02:00</published></entry>
+</feed>
