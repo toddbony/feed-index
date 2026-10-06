@@ -9,3 +9,5 @@
 .env
 *.pgpass
 pgpass
+# Local notes from build sessions, not for the public repo.
+FETCHER_SUMMARY.md
