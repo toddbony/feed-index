@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>feed-index example</title>
+  </head>
+  <body>
+    <!-- The nearest enclosing outline names the folder. Two optional attributes:
+           poll_minutes  minutes between fetches (5..=1440), else the config default
+           weight        integer ranking hint, stored but not used by the fetcher
+         Other attributes are ignored. -->
+    <outline text="Breaking" title="Breaking">
+      <outline type="rss" text="Example Wire" xmlUrl="https://news.example.org/feed.xml"
+               htmlUrl="https://news.example.org/" poll_minutes="10" weight="50"/>
+    </outline>
+    <outline text="Commentary" title="Commentary">
+      <outline type="rss" text="An Example Newsletter" xmlUrl="https://writer.example.com/feed"
+               htmlUrl="https://writer.example.com/" weight="20"/>
+    </outline>
+  </body>
+</opml>

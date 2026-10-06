@@ -1,0 +1,26 @@
+# feed-index configuration. Copy to /etc/feed-index/config.toml and edit.
+#
+# Database connection settings do NOT go here: they come from the standard libpq
+# environment (PGHOST, PGPORT, PGDATABASE, PGUSER, PGSSLMODE, PGPASSFILE).
+
+# The feed list. Standard OPML 2.0; see example.opml for the optional attributes.
+opml = "/etc/feed-index/feeds.opml"
+
+# Sent in the User-Agent header so publishers can reach whoever runs this fetcher:
+# "feed-index/<version> (+<contact>)". A URL or a mailto: is customary.
+contact = "https://example.org/feed-index"
+
+# Minutes between fetches of a feed that sets no poll_minutes attribute (5..=1440).
+default_poll_minutes = 60
+
+# Feeds fetched at the same time.
+concurrency = 4
+
+# A response larger than this is abandoned and recorded as too_large.
+max_feed_bytes = 10_485_760
+
+# Per-request timeout, seconds.
+timeout_seconds = 30
+
+# feeds.fetches rows older than this are deleted at the end of each run.
+fetch_history_days = 90

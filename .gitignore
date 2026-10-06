@@ -1,0 +1,11 @@
+/target
+# Real configuration never goes in this repo: it names hosts, paths and the owner's feed list.
+*.toml
+!Cargo.toml
+!example.toml
+*.opml
+!tests/fixtures/**/*.opml
+!example.opml
+.env
+*.pgpass
+pgpass
