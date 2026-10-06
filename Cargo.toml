@@ -39,7 +39,7 @@ wiremock = "0.6"
 maintainer = "feed-index maintainers <maintainers@example.org>"
 section = "net"
 priority = "optional"
-depends = "$auto, adduser, systemd"
+depends = "$auto, adduser, systemd, ca-certificates"
 extended-description = """\
 Polls RSS, Atom and JSON feeds listed in an OPML file and indexes their entries into \
 PostgreSQL, keeping every entry after the feed has rotated it out. Installs a oneshot \
